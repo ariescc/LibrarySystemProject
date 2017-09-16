@@ -12,6 +12,8 @@ namespace LibraryProject.DAL
         private LibraryContext context = new LibraryContext();
 
         private GenericRepository<User> userRepository;
+        private GenericRepository<UserInfo> userInfoRepository;
+        private GenericRepository<Department> departmentRepository;
 
         public GenericRepository<User> UserRepository
         {
@@ -25,7 +27,30 @@ namespace LibraryProject.DAL
             }
         }
 
-#region Save & Disposes
+        public GenericRepository<UserInfo> UserInfoRepository
+        {
+            get
+            {
+                if (this.userInfoRepository == null)
+                {
+                    this.userInfoRepository = new GenericRepository<UserInfo>(context);
+                }
+                return userInfoRepository;
+            }
+        }
+
+        public GenericRepository<Department> DepartmentRepository
+        {
+            get
+            {
+                if (this.departmentRepository == null)
+                {
+                    this.departmentRepository = new GenericRepository<Department>(context);
+                }
+                return departmentRepository;
+            }
+        }
+        #region Save & Disposes
         public void Save()
         {
             context.SaveChanges();

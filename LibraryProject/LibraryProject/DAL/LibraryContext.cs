@@ -16,6 +16,8 @@ namespace LibraryProject.DAL
 
         // Add Tables
         public DbSet<User> Users { get; set; }
+        public DbSet<UserInfo> UserInfoes { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
