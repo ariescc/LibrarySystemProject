@@ -1,0 +1,156 @@
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\ApplicationInsights.config
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\csc.exe
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\csc.exe.config
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\csc.rsp
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\csi.exe
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\csi.rsp
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CSharp.Core.targets
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\Microsoft.VisualBasic.Core.targets
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\System.AppContext.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\System.Collections.Immutable.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\System.Diagnostics.StackTrace.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\System.IO.FileSystem.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\System.IO.FileSystem.Primitives.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\System.Reflection.Metadata.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\vbc.exe
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\vbc.exe.config
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\vbc.rsp
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\VBCSCompiler.exe
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\roslyn\VBCSCompiler.exe.config
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\LibraryProject.dll.config
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\LibraryProject.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\LibraryProject.pdb
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Antlr3.Runtime.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\EntityFramework.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\EntityFramework.SqlServer.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.Agent.Intercept.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.DependencyCollector.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.PerfCounterCollector.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.ServerTelemetryChannel.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.Web.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.WindowsServer.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.ApplicationInsights.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.Web.Infrastructure.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Newtonsoft.Json.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.Helpers.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.Mvc.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.Optimization.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.Razor.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.WebPages.Deployment.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.WebPages.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.WebPages.Razor.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\WebGrease.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\EntityFramework.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\EntityFramework.SqlServer.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.Helpers.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.Mvc.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.Optimization.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.Razor.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.WebPages.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.WebPages.Deployment.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\System.Web.WebPages.Razor.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Antlr3.Runtime.pdb
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Newtonsoft.Json.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.ApplicationInsights.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.DependencyCollector.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.ServerTelemetryChannel.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.WindowsServer.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\Microsoft.AI.Web.xml
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.Helpers.resources.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.Mvc.resources.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.Optimization.resources.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.Razor.resources.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.WebPages.resources.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\obj\Debug\LibraryProject.csprojResolveAssemblyReference.cache
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\obj\Debug\LibraryProject.dll
+Q:\新建文件夹 (2)\LibraryProject\LibraryProject\obj\Debug\LibraryProject.pdb
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\ApplicationInsights.config
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\csc.exe
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\csc.exe.config
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\csc.rsp
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\csi.exe
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\csi.rsp
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.CSharp.Core.targets
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\Microsoft.VisualBasic.Core.targets
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\System.AppContext.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\System.Collections.Immutable.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\System.Diagnostics.StackTrace.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\System.IO.FileSystem.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\System.IO.FileSystem.Primitives.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\System.Reflection.Metadata.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\vbc.exe
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\vbc.exe.config
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\vbc.rsp
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\VBCSCompiler.exe
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\roslyn\VBCSCompiler.exe.config
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\LibraryProject.dll.config
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\LibraryProject.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\LibraryProject.pdb
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Antlr3.Runtime.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\EntityFramework.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\EntityFramework.SqlServer.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.Agent.Intercept.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.DependencyCollector.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.PerfCounterCollector.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.ServerTelemetryChannel.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.Web.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.WindowsServer.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.ApplicationInsights.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.Web.Infrastructure.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Newtonsoft.Json.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.Helpers.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.Mvc.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.Optimization.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.Razor.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.WebPages.Deployment.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.WebPages.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.WebPages.Razor.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\WebGrease.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\EntityFramework.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\EntityFramework.SqlServer.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.Helpers.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.Mvc.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.Optimization.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.Razor.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.WebPages.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.WebPages.Deployment.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\System.Web.WebPages.Razor.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Antlr3.Runtime.pdb
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Newtonsoft.Json.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.ApplicationInsights.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.DependencyCollector.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.ServerTelemetryChannel.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.WindowsServer.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\Microsoft.AI.Web.xml
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.Helpers.resources.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.Mvc.resources.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.Optimization.resources.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.Razor.resources.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.WebPages.resources.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\obj\Debug\LibraryProject.csprojResolveAssemblyReference.cache
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\obj\Debug\LibraryProject.dll
+Q:\LibrarySystemProject\LibraryProject\LibraryProject\obj\Debug\LibraryProject.pdb
