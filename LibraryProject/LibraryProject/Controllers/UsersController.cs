@@ -9,16 +9,20 @@ using System.Web.Mvc;
 using LibraryProject.DAL;
 using LibraryProject.Models;
 using LibraryProject.Repositories;
+using System.Web.UI;
 
 namespace LibraryProject.Controllers
 {
     public class UsersController : Controller
     {
+        // private UserDbContext db = new UserDbContext();
+
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Users
         public ActionResult Index()
         {
+            //return View(db.Users.ToList());
             return View(unitOfWork.UserRepository.Get());
         }
 
@@ -29,8 +33,8 @@ namespace LibraryProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //User user = db.Users.Find(id);
             User user = unitOfWork.UserRepository.GetByID(id);
-            // User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -49,10 +53,21 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserName,Password,CreateTime")] User user)
+        public ActionResult Create([Bind(Include = "ID,UserName,Password,PasswordComfirm,PhoneNum,Email")] User user)
         {
-            unitOfWork.UserRepository.Insert(user);
-            unitOfWork.Save();
+            if(IsDistinctUserName(user.UserName))
+            {
+                ModelState.AddModelError("UserName", "用户名称不唯一");
+            }
+            if (ModelState.IsValid)
+            {
+                //db.Users.Add(user);
+                //db.SaveChanges();
+                unitOfWork.UserRepository.Insert(user);
+                unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+
             return View(user);
         }
 
@@ -63,7 +78,7 @@ namespace LibraryProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            // User user = db.Users.Find(id);
+            //User user = db.Users.Find(id);
             User user = unitOfWork.UserRepository.GetByID(id);
             if (user == null)
             {
@@ -77,12 +92,12 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserName,Password,CreateTime")] User user)
+        public ActionResult Edit([Bind(Include = "ID,UserName,Password,PhoneNum,Email")] User user)
         {
             if (ModelState.IsValid)
             {
-                // db.Entry(user).State = EntityState.Modified;
-                // db.SaveChanges();
+                //db.Entry(user).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -95,7 +110,7 @@ namespace LibraryProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            // User user = db.Users.Find(id);
+            //User user = db.Users.Find(id);
             User user = unitOfWork.UserRepository.GetByID(id);
             if (user == null)
             {
@@ -109,10 +124,11 @@ namespace LibraryProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            // User user = db.Users.Find(id);
-            // db.Users.Remove(user);
-            // db.SaveChanges();
+            //User user = db.Users.Find(id);
+            //db.Users.Remove(user);
+            //db.SaveChanges();
             unitOfWork.UserRepository.Delete(id);
+            unitOfWork.Save();
             return RedirectToAction("Index");
         }
 
@@ -124,5 +140,27 @@ namespace LibraryProject.Controllers
             }
             base.Dispose(disposing);
         }
+        private bool IsDistinctUserName(string username)
+        {
+            if (unitOfWork.UserRepository.Get().Where(r => r.UserName == username).ToList().Count > 0)
+                return true;
+            else
+                return false;
+        }
+
+        [OutputCache(Location = OutputCacheLocation.None,NoStore = true)]//清楚缓存
+        public JsonResult CheckUserName(string username)
+        {
+            if (IsDistinctUserName(username))
+            {
+                return Json("用户名不唯一", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
     }
 }

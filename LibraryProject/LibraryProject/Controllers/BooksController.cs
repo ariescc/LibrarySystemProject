@@ -22,6 +22,7 @@ namespace LibraryProject.Controllers
             return View(books);
         }
 
+
         // GET: Books/Details/5
         public ActionResult Details(int? id)
         {
@@ -124,6 +125,7 @@ namespace LibraryProject.Controllers
             unitOfWork.Save();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {
