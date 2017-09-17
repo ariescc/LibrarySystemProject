@@ -8,7 +8,7 @@ using System.Web;
 
 namespace LibraryProject.DAL
 {
-    public class LibraryContext:DbContext
+    public class LibraryContext : DbContext
     {
         public LibraryContext()
             : base("LibraryContext")
@@ -19,6 +19,7 @@ namespace LibraryProject.DAL
         public DbSet<UserInfo> UserInfoes { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<BorrowAndReturn> BorrowAndReturns { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
