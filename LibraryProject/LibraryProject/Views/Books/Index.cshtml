@@ -6,14 +6,13 @@
 
 <h2>Index</h2>
 
-@Styles.Render("//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css")
-@Scripts.Render("//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js")
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <div>
-    <table id="BorrowBook" class="table table-striped table-hover dt-responsive nowrap table-bordered dataTable">
+    <table id="table_id_example" class="table table-striped table-hover dt-responsive nowrap table-bordered dataTable">
         <thead>
             <tr>
                 <th>
@@ -83,6 +82,6 @@
 
 <script>
     $(document).ready(function () {
-        $('#BorrowBook').dataTable();
+        $('#table_id_example').DataTable();
     });
 </script>

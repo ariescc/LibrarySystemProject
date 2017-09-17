@@ -13,6 +13,14 @@
     <!-- Custom styles for this template -->
     @Styles.Render("~/Content/css/simple-sidebar.css")
     <!--link href="css/simple-sidebar.css" rel="stylesheet"-->
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    @Scripts.Render("http://code.jquery.com/jquery-1.10.2.min.js")
+    @Scripts.Render("http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js")
+    @Styles.Render("http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css")
+    @Scripts.Render("~/vendor/popper/popper.min.js")
+    @Scripts.Render("~/vendor/bootstrap/js/bootstrap.min.js")
+    <!-- Menu Toggle Script -->
 </head>
 <body>
     <div id="wrapper">
@@ -38,17 +46,15 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Menu</a>
+            <div class="btn btn-secondary">
+                @Html.ActionLink("Login","Login","Users")
+            </div>
             <div class="form-group"></div>
             @RenderBody()
         </div>
         <!-- /#page-content-wrapper -->
     </div>
-    <!-- /#wrapper -->
-    <!-- Bootstrap core JavaScript -->
-    @Scripts.Render("~/vendor/jquery/jquery.min.js")
-    @Scripts.Render("~/vendor/popper/popper.min.js")
-    @Scripts.Render("~/vendor/bootstrap/js/bootstrap.min.js")
-    <!-- Menu Toggle Script -->
+   
     <script>
         $("#menu-toggle").click(function (e) {
             e.preventDefault();

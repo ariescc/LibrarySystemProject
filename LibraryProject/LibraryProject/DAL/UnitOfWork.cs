@@ -15,6 +15,7 @@ namespace LibraryProject.DAL
         private GenericRepository<UserInfo> userInfoRepository;
         private GenericRepository<Department> departmentRepository;
         private GenericRepository<Book> bookRepository;
+        private GenericRepository<BorrowAndReturn> borrowAndReturnRepository;
 
         public GenericRepository<User> UserRepository
         {
@@ -61,6 +62,18 @@ namespace LibraryProject.DAL
                     this.bookRepository = new GenericRepository<Book>(context);
                 }
                 return bookRepository;
+            }
+        }
+
+        public GenericRepository<BorrowAndReturn> BorrowAndReturnRepository
+        {
+            get
+            {
+                if (this.borrowAndReturnRepository == null)
+                {
+                    this.borrowAndReturnRepository = new GenericRepository<BorrowAndReturn>(context);
+                }
+                return borrowAndReturnRepository;
             }
         }
         #region Save & Disposes

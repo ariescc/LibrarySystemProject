@@ -19,6 +19,32 @@ namespace LibraryProject.Controllers
 
         private UnitOfWork unitOfWork = new UnitOfWork();
 
+        // GET: Login
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login([Bind(Include ="UserName,Password")] User user)
+        {
+            var userObj = unitOfWork.UserRepository.Get()
+                .Where(item => item.UserName.Equals(user.UserName) == true)
+                .ToList();
+            if(userObj[0] != null)
+            {
+                if (userObj[0].Password.Equals(user.Password) == true)
+                {
+                    return RedirectToAction("Index","Books","Index");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("UserName", "No User");
+            }
+            return View(user);
+        }
+
         // GET: Users
         public ActionResult Index()
         {
