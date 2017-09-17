@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>NWPU Library System</title>
+    @Styles.Render("~/Content/font-awesome.min.css")
     <!-- Bootstrap core CSS -->
     @Styles.Render("~/vendor/bootstrap/css/bootstrap.min.css")
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" -->
     <!-- Custom styles for this template -->
     @Styles.Render("~/Content/css/simple-sidebar.css")
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <!--link href="css/simple-sidebar.css" rel="stylesheet"-->
 </head>
 <body>
     <div id="wrapper">
@@ -19,30 +20,17 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
+                    <i class=""></i>
+                    @Html.ActionLink("Home","Index","Home")
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    @Html.ActionLink("Borrow Books","Index","Books")
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    @Html.ActionLink("Profile","Index","UserInfoes")
                 </li>
                 <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
+                    @Html.ActionLink("Logout","Index","Home")
                 </li>
             </ul>
         </div>
@@ -67,5 +55,7 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
+
+    
 </body>
 </html>
