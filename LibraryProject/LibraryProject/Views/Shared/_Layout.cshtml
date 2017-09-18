@@ -45,11 +45,17 @@
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Menu</a>
-            <div class="btn btn-secondary">
-                @Html.ActionLink("Login","Login","Users")
-            </div>
+            <div class="col-md-12">
+                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Menu</a>
+                <div class="btn btn-secondary">
+                    @Html.ActionLink("Login","Login","Users")
+                </div>
+                <div class="btn btn-secondary">
+                    @Html.ActionLink("Register","Create","Users")
+                </div>
+            </>
             <div class="form-group"></div>
+            <hr>
             @RenderBody()
         </div>
         <!-- /#page-content-wrapper -->
