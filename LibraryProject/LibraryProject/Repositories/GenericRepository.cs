@@ -21,7 +21,7 @@ namespace LibraryProject.Repositories
         public void Delete(object id)
         {
             TEntity entityToDelete = dbSet.Find(id);
-            Delete(entityToDelete);
+            dbSet.Remove(entityToDelete);
         }
 
         public IEnumerable<TEntity> Get()

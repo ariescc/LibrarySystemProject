@@ -120,8 +120,8 @@ namespace LibraryProject.Controllers
             //Book book = db.Books.Find(id);
             //db.Books.Remove(book);
             //db.SaveChanges();
-            Book book = unitOfWork.BookRepository.GetByID(id);
-            unitOfWork.BookRepository.Delete(book);
+            var book = unitOfWork.BookRepository.GetByID(id);
+            unitOfWork.BookRepository.Delete(id);
             unitOfWork.Save();
             return RedirectToAction("Index");
         }
