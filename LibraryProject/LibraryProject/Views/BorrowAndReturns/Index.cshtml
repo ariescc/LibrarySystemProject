@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LibraryProject.Models.BorrowAndReturn>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReturnTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiredDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsReturn)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BorrowTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReturnTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpiredDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsReturn)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#table_id').dataTable();
+    });
+</script>

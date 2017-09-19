@@ -1,0 +1,66 @@
+﻿@model LibraryProject.Models.BorrowAndReturn
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BorrowAndReturn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BorrowTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BorrowTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReturnTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpiredDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpiredDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsReturn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsReturn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
