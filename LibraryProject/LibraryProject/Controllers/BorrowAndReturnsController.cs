@@ -16,12 +16,14 @@ namespace LibraryProject.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: BorrowAndReturns
+        [Auth(Code ="libraryadmin")]
         public ActionResult Index()
         {
             return View(unitOfWork.BorrowAndReturnRepository.Get());
         }
 
         // GET: BorrowAndReturns/Details/5
+        [Auth(Code ="libraryadmin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: BorrowAndReturns/Create
+        [Auth(Code ="libraryadmin")]
         public ActionResult Create()
         {
             return View();
@@ -48,6 +51,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Auth(Code ="libraryadmin")]
         public ActionResult Create([Bind(Include = "ID,UserID,BookID,BorrowTime,ReturnTime,ExpiredDays,IsReturn")] BorrowAndReturn borrowAndReturn)
         {
             if (ModelState.IsValid)
@@ -63,6 +67,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: BorrowAndReturns/Edit/5
+        [Auth(Code ="libraryadmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +88,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Auth(Code ="libraryadmin")]
         public ActionResult Edit([Bind(Include = "ID,UserID,BookID,BorrowTime,ReturnTime,ExpiredDays,IsReturn")] BorrowAndReturn borrowAndReturn)
         {
             if (ModelState.IsValid)
