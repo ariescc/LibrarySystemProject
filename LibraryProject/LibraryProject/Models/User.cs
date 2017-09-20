@@ -33,5 +33,8 @@ namespace LibraryProject.Models
         [Required]
         [RegularExpression(@"[A-Za-z0-9.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",ErrorMessage ="邮箱格式错误")]
         public string Email { get; set; }
+
+        public string Role { get; set; }
     }
+
 }
