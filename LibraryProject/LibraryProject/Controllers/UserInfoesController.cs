@@ -15,34 +15,54 @@ namespace LibraryProject.Controllers
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 
-        // GET: UserInfoes
-        public ActionResult Index()
+
+        // GET: PersonInfo
+        public ActionResult PersonInfo()
         {
-            return View();
+            var user = CheckLogin.Instance.GetUser();
+            var userInfo = unitOfWork.UserInfoRepository.Get()
+                .Where(ctx => ctx.UserID == user.ID)
+                .ToList();
+            var userObj = new UserInfo();
+            if(userInfo.Count() == 0)
+            {
+                userObj = new UserInfo
+                {
+                    UserName = user.UserName,
+                    StudentID = "",
+                    Email = user.Email,
+                    Phone = user.PhoneNum,
+                    DepartmentName = "",
+                    Name = ""
+                };
+            }
+            else
+            {
+                userObj = new UserInfo
+                {
+                    UserName=user.UserName,
+                    StudentID=userInfo[0].StudentID,
+                    Email=user.Email,
+                    Phone=user.PhoneNum,
+                    DepartmentName=userInfo[0].DepartmentName,
+                    Name=userInfo[0].Name
+                };
+            }
+            return View(userObj);
         }
 
-        // POST: UserInfoes
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "ID,UserID,UserName,StudentID,Name,Email" +
-            "Phone,DepartmentName")] UserInfo userInfo)
+        public ActionResult PersonInfo([Bind(Include ="StudentID,Name,Email,Phone,DepartmentName")] UserInfo userInfo)
         {
-            var name = User.Identity.Name;
-            var user = unitOfWork.UserRepository.Get()
-                .Where(item => item.UserName.Equals(name) == true)
+            var user = CheckLogin.Instance.GetUser();
+            var userDatabase = unitOfWork.UserInfoRepository.Get()
+                .Where(ctx => ctx.UserName.Equals(userInfo.UserName) == true)
                 .ToList();
-            //var user = unitOfWork.UserRepository.GetByID(Convert.ToInt32(User.Identity.Name));
-            var userInfoObj = unitOfWork.UserInfoRepository.Get()
-                .Where(item => item.UserID == user[0].ID)
-                .ToList();
-            if(userInfoObj == null)
+            var userInfoInput = new UserInfo();
+            if(userDatabase.Count() == 0)
             {
-                var userInfoInput = new UserInfo
-                {
-                    UserID = user[0].ID,
-                    UserName = user[0].UserName,
+                userInfoInput = new UserInfo {
+                    UserName = userInfo.UserName,
                     StudentID = userInfo.StudentID,
                     Name = userInfo.Name,
                     Email = userInfo.Email,
@@ -50,22 +70,18 @@ namespace LibraryProject.Controllers
                     DepartmentName = userInfo.DepartmentName
                 };
                 unitOfWork.UserInfoRepository.Insert(userInfoInput);
-                unitOfWork.Save();
-                return View(userInfoInput);
             }
             else
             {
-                userInfoObj[0].UserName = user[0].UserName;
-                userInfoObj[0].StudentID = userInfo.StudentID;
-                userInfoObj[0].Name = userInfo.Name;
-                userInfoObj[0].Email = userInfo.Email;
-                userInfoObj[0].Phone = userInfo.Phone;
-                userInfoObj[0].DepartmentName = userInfo.DepartmentName;
-                unitOfWork.Save();
-                return View(userInfoObj[0]);
+                userDatabase[0].UserName = userInfo.UserName;
+                userDatabase[0].StudentID = userInfo.StudentID;
+                userDatabase[0].Name = userInfo.Name;
+                userDatabase[0].Email = userInfo.Email;
+                userDatabase[0].Phone = userInfo.Phone;
+                userDatabase[0].DepartmentName = userInfo.DepartmentName;
+                userInfoInput = userDatabase[0];
             }
-            
+            return View(userInfoInput);
         }
-
     }
 }
