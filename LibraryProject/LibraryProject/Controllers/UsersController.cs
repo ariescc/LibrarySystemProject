@@ -10,12 +10,16 @@ using LibraryProject.DAL;
 using LibraryProject.Models;
 using LibraryProject.Repositories;
 using System.Web.UI;
+using System.Web.Security;
+using Newtonsoft.Json;
 
 namespace LibraryProject.Controllers
 {
     public class UsersController : Controller
     {
         // private UserDbContext db = new UserDbContext();
+
+        public readonly static UsersController usersController = new UsersController();
 
         private UnitOfWork unitOfWork = new UnitOfWork();
 
@@ -35,7 +39,23 @@ namespace LibraryProject.Controllers
             {
                 if (userObj[0].Password.Equals(user.Password) == true)
                 {
-                    return RedirectToAction("Index","Books","Index");
+                    CheckLogin.Instance.IsLogin = true;
+                    // Session 实现
+
+                    // 序列化用户实体
+                    string UserData = JsonConvert.SerializeObject(userObj[0]);
+
+                    // 保存身份信息
+                    FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(1, user.UserName,
+                        DateTime.Now, DateTime.Now.AddHours(12), false, UserData);
+
+                    HttpCookie Cookie = new HttpCookie(FormsAuthentication.FormsCookieName,
+                        FormsAuthentication.Encrypt(Ticket));
+
+                    Response.Cookies.Add(Cookie);
+
+                    //return RedirectToAction("Index","Books","Index");
+                    return Redirect("/Home/Index/");
                 }
             }
             else
@@ -43,6 +63,13 @@ namespace LibraryProject.Controllers
                 ModelState.AddModelError("UserName", "No User");
             }
             return View(user);
+        }
+
+        // 注销登录
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/Home/Index/");
         }
 
         // GET: Users

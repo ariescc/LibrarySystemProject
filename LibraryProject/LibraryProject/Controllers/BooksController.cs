@@ -16,6 +16,7 @@ namespace LibraryProject.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Books
+        [Auth(Code ="libraryadmin")]
         public ActionResult Index()
         {
             var books = unitOfWork.BookRepository.Get();
@@ -24,6 +25,7 @@ namespace LibraryProject.Controllers
 
 
         // GET: Books/Details/5
+        [Auth(Code ="libraryadmin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,6 +47,7 @@ namespace LibraryProject.Controllers
             return View();
         }
 
+        [Authorize]
         // POST: Books/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
