@@ -1,12 +1,4 @@
-﻿@model LibraryProject.Models.User
-
-<script>
-    $(document).ready(function () {
-        
-    });
-</script>
-
-@if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+﻿@if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] == null)
 {
     <label>Not sign in..</label>
 }
