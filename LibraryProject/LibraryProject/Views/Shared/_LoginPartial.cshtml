@@ -1,0 +1,12 @@
+﻿@if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+{
+    <button class="btn">
+        @Html.ActionLink("Sign in", "Login", "Users")
+    </button>
+}
+else
+{
+    <button class="btn">
+        @Html.ActionLink("Sign out", "Logout", "Users")
+    </button>
+}
