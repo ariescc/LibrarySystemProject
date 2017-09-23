@@ -4,79 +4,85 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/Books/Index">Book List</a></li>
+        <li class="active">Book Detail</li>
+    </ol>
+</section>
 
-<div>
-    <h4>Book</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div class="box box-primary">
+    <div class="box-body">
+        <h4>@Html.DisplayFor(model=>model.Name)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAvailable)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsAvailable)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.IsAvailable)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Isbn)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Isbn)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Isbn)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Isbn)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Summary)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Summary)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Summary)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Summary)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Author)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Author)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Author)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishTime)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PublishTime)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PublishTime)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PublishTime)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<a href="/Books/Index"><i class="fa fa-reply"></i> Back to List..</a>
