@@ -1,9 +1,14 @@
 ﻿@model LibraryProject.Models.Book
 
+@using LibraryProject.Models
+
 @{
     ViewBag.Title = "Details";
 }
 
+@{ 
+    User user = CheckLogin.Instance.GetUser();
+}
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <ol class="breadcrumb">
@@ -82,7 +87,23 @@
                 @Html.DisplayFor(model => model.PublishTime)
             </dd>
 
+            <dt>
+                @Html.DisplayNameFor(model=>model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model=>model.Location)
+            </dd>
+
         </dl>
     </div>
 </div>
-<a href="/Books/Index"><i class="fa fa-reply"></i> Back to List..</a>
+@if (user == null || user.Role.Equals("libraryadmin") == false)
+{
+    <a href="/Books/Index"><i class="fa fa-reply"></i> Back to List..</a>
+}
+else
+{
+    <a href="/Books/BooksManage"><i class="fa fa-reply"></i> Back to List..</a>
+}
+
