@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LibraryProject.DAL;
 using LibraryProject.Models;
+using LibraryProject.ViewModels;
 
 namespace LibraryProject.Controllers
 {
@@ -19,7 +20,23 @@ namespace LibraryProject.Controllers
         [Auth(Code ="libraryadmin")]
         public ActionResult Index()
         {
-            return View(unitOfWork.BorrowAndReturnRepository.Get());
+            IEnumerable<BorrowAndReturn> objList = unitOfWork.BorrowAndReturnRepository.Get();
+            List<BorrowAndReturnOuput> BorrowAndReturnOutputList = new List<BorrowAndReturnOuput>();
+            foreach(var item in objList)
+            {
+                var input = new BorrowAndReturnOuput
+                {
+                    ID=item.ID,
+                    UserName = unitOfWork.UserRepository.GetByID(item.UserID).UserName,
+                    BookName = unitOfWork.BookRepository.GetByID(item.BookID).Name,
+                    IsReturn=false,
+                    BorrowTime=item.BorrowTime,
+                    ReturnTime=item.ReturnTime,
+                    ExpiredDays=item.ExpiredDays
+                };
+                BorrowAndReturnOutputList.Add(input);
+            }
+            return View(BorrowAndReturnOutputList);
         }
 
         // GET: BorrowAndReturns/Details/5
@@ -52,17 +69,30 @@ namespace LibraryProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Auth(Code ="libraryadmin")]
-        public ActionResult Create([Bind(Include = "ID,UserID,BookID,BorrowTime,ReturnTime,ExpiredDays,IsReturn")] BorrowAndReturn borrowAndReturn)
+        public ActionResult Create([Bind(Include = "ID,StudentID,BookID,BorrowTime,ReturnTime,ExpiredDays,IsReturn")] BorrowAndReturnInput borrowAndReturnInput)
         {
+            var borrowAndReturn = new BorrowAndReturn();
             if (ModelState.IsValid)
             {
                 //db.BorrowAndReturns.Add(borrowAndReturn);
                 //db.SaveChanges();
+                var userInfoObj = unitOfWork.UserInfoRepository.Get()
+                    .Where(ctx => ctx.StudentID.Equals(borrowAndReturnInput.StudentID) == true)
+                    .ToList();
+                borrowAndReturn = new BorrowAndReturn
+                {
+                    ID=borrowAndReturnInput.ID,
+                    BookID=borrowAndReturnInput.BookID,
+                    UserID=userInfoObj[0].UserID,
+                    BorrowTime=borrowAndReturnInput.BorrowTime,
+                    ReturnTime=borrowAndReturnInput.ReturnTime,
+                    ExpiredDays=borrowAndReturnInput.ExpiredDays,
+                    IsReturn=borrowAndReturnInput.IsReturn
+                };
                 unitOfWork.BorrowAndReturnRepository.Insert(borrowAndReturn);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-
             return View(borrowAndReturn);
         }
 

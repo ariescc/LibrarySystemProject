@@ -1,31 +1,38 @@
-﻿@model IEnumerable<LibraryProject.Models.BorrowAndReturn>
+﻿@model IEnumerable<LibraryProject.ViewModels.BorrowAndReturnOuput>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Borrow Manage</li>
+    </ol>
+</section>
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Borrow For User", "Create")
 </p>
 <table id="table_id" class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserID)
+                @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BookID)
+                @Html.DisplayNameFor(model => model.BookName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BorrowTime)
+                @Html.DisplayNameFor(model=>model.BorrowTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ReturnTime)
+                @Html.DisplayNameFor(model=>model.ReturnTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExpiredDays)
+                @Html.DisplayNameFor(model=>model.ExpiredDays)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsReturn)
@@ -37,19 +44,19 @@
         @foreach (var item in Model) {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserID)
+                    @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BookID)
+                    @Html.DisplayFor(modelItem => item.BookName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BorrowTime)
+                    @Html.DisplayFor(modelItem=>item.BorrowTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ReturnTime)
+                    @Html.DisplayFor(modelItem=>item.ReturnTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ExpiredDays)
+                    @Html.DisplayFor(modelItem=>item.ExpiredDays)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IsReturn)
