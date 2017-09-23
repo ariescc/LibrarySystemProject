@@ -37,6 +37,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: BookTypes/Create
+        [Auth(Code ="libraryadmin")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +48,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Auth(Code ="libraryadmin")]
         public ActionResult Create([Bind(Include = "ID,BookName,BookAmount")] BookType bookType)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: BookTypes/Edit/5
+        [Auth(Code ="libraryadmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Auth(Code ="libraryadmin")]
         public ActionResult Edit([Bind(Include = "ID,BookName,BookAmount")] BookType bookType)
         {
             if (ModelState.IsValid)
@@ -91,6 +95,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: BookTypes/Delete/5
+        [Auth(Code ="libraryadmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +113,7 @@ namespace LibraryProject.Controllers
         // POST: BookTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Auth(Code ="libraryadmin")]
         public ActionResult DeleteConfirmed(int id)
         {
             BookType bookType = db.BookTypes.Find(id);
