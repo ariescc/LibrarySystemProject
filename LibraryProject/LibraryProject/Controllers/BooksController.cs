@@ -60,7 +60,7 @@ namespace LibraryProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Auth(Code ="libraryadmin")]
-        public ActionResult Create([Bind(Include = "ID,Name,IsAvailable,Isbn,Summary,Author,Type,Price,PublishTime")] Book book)
+        public ActionResult Create([Bind(Include = "ID,Name,IsAvailable,Isbn,Summary,Author,Type,Price,PublishTime,Location")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -97,13 +97,15 @@ namespace LibraryProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Auth(Code ="libraryadmin")]
-        public ActionResult Edit([Bind(Include = "ID,Name,IsAvailable,Isbn,Summary,Author,Type,Price,PublishTime")] Book book)
+        public ActionResult Edit([Bind(Include = "ID,Name,IsAvailable,Isbn,Summary,Author,Type,Price,PublishTime,Location")] Book book)
         {
             if (ModelState.IsValid)
             {
+                unitOfWork.context.Entry(book).State = EntityState.Modified;
                 // db.Entry(book).State = EntityState.Modified;
                 // db.SaveChanges();
-                return RedirectToAction("Index");
+                unitOfWork.Save();
+                return RedirectToAction("BooksManage");
             }
             return View(book);
         }

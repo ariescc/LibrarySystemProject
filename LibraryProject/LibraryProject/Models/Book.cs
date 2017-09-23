@@ -16,5 +16,6 @@ namespace LibraryProject.Models
         public string Type { get; set; }
         public decimal Price { get; set; }
         public DateTime PublishTime { get; set; }
+        public string Location { get; set; }
     }
 }

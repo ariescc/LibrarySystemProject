@@ -9,7 +9,7 @@ namespace LibraryProject.DAL
 {
     public class UnitOfWork : IDisposable
     {
-        private LibraryContext context = new LibraryContext();
+        public LibraryContext context = new LibraryContext();
 
         private GenericRepository<User> userRepository;
         private GenericRepository<UserInfo> userInfoRepository;
