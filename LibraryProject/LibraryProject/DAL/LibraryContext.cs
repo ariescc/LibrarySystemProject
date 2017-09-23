@@ -20,6 +20,7 @@ namespace LibraryProject.DAL
         public DbSet<Department> Departments { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<BorrowAndReturn> BorrowAndReturns { get; set; }
+        public DbSet<BookType> BookTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
