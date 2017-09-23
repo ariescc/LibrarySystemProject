@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LibraryProject.DAL;
 using LibraryProject.Models;
+using LibraryProject.ViewModels;
 
 namespace LibraryProject.Controllers
 {
@@ -23,29 +24,37 @@ namespace LibraryProject.Controllers
             var userInfo = unitOfWork.UserInfoRepository.Get()
                 .Where(ctx => ctx.UserID == user.ID)
                 .ToList();
-            var userObj = new UserInfo();
+            var borrowAmount = unitOfWork.BorrowAndReturnRepository.Get()
+                .Where(ctx => ctx.UserID == user.ID)
+                .ToList()
+                .Count();
+            var userObj = new UserInfoOutput();
             if(userInfo.Count() == 0)
             {
-                userObj = new UserInfo
+                userObj = new UserInfoOutput
                 {
                     UserName = user.UserName,
                     StudentID = "",
                     Email = user.Email,
                     Phone = user.PhoneNum,
                     DepartmentName = "",
-                    Name = ""
+                    Name = "",
+                    BorrowAmount = borrowAmount,
+                    CurrentBorrowAmount = 0
                 };
             }
             else
             {
-                userObj = new UserInfo
+                userObj = new UserInfoOutput
                 {
-                    UserName=user.UserName,
-                    StudentID=userInfo[0].StudentID,
-                    Email=user.Email,
-                    Phone=user.PhoneNum,
-                    DepartmentName=userInfo[0].DepartmentName,
-                    Name=userInfo[0].Name
+                    UserName = user.UserName,
+                    StudentID = userInfo[0].StudentID,
+                    Email = user.Email,
+                    Phone = user.PhoneNum,
+                    DepartmentName = userInfo[0].DepartmentName,
+                    Name = userInfo[0].Name,
+                    BorrowAmount = borrowAmount,
+                    CurrentBorrowAmount = 0
                 };
             }
             return View(userObj);
