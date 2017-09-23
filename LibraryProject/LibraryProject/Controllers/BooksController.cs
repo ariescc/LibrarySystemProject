@@ -23,6 +23,12 @@ namespace LibraryProject.Controllers
             return View(books);
         }
 
+        [Auth(Code ="libraryadmin")]
+        public ActionResult BooksManage()
+        {
+            var books = unitOfWork.BookRepository.Get();
+            return View(books);
+        }
 
         // GET: Books/Details/5
         [AllowAnonymous]
@@ -41,13 +47,13 @@ namespace LibraryProject.Controllers
             return View(book);
         }
 
-        // GET: Books/Create
+        // GET: Books/
+        [Auth(Code ="libraryadmin")]
         public ActionResult Create()
         {
             return View();
         }
 
-        [Authorize]
         // POST: Books/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
@@ -62,7 +68,7 @@ namespace LibraryProject.Controllers
                 // db.SaveChanges();
                 unitOfWork.BookRepository.Insert(book);
                 unitOfWork.Save();
-                return RedirectToAction("Index");
+                return RedirectToAction("BooksManage");
             }
 
             return View(book);

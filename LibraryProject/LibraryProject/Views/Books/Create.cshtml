@@ -4,7 +4,13 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Add Book</h2>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Add Book</li>
+    </ol>
+</section>
 
 
 @using (Html.BeginForm()) 
@@ -88,7 +94,4 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 

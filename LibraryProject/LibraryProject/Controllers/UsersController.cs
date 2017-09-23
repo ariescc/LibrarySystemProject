@@ -73,7 +73,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Users
-        [Auth(Code ="libraryadmin,admin")]
+        [Auth(Code ="libraryadmin")]
         public ActionResult Index()
         {
             //return View(db.Users.ToList());
@@ -81,7 +81,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Users/Details/5
-        [Auth(Code ="libraryadmin,admin")]
+        [Auth(Code ="libraryadmin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -98,7 +98,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Users/Create
-        [Auth(Code ="libraryadmin,admin")]
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
@@ -109,7 +109,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Auth(Code ="libraryadmin,admin")]
+        [AllowAnonymous]
         public ActionResult Create([Bind(Include = "ID,UserName,Password,PasswordComfirm,PhoneNum,Email")] User user)
         {
             if(IsDistinctUserName(user.UserName))
@@ -120,16 +120,17 @@ namespace LibraryProject.Controllers
             {
                 //db.Users.Add(user);
                 //db.SaveChanges();
+                user.Role = "user";
                 unitOfWork.UserRepository.Insert(user);
                 unitOfWork.Save();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
 
             return View(user);
         }
 
         // GET: Users/Edit/5
-        [Auth(Code ="libraryadmin,admin")]
+        [Auth(Code ="libraryadmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -150,7 +151,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Auth(Code ="libraryadmin,admin")]
+        [Auth(Code ="libraryadmin")]
         public ActionResult Edit([Bind(Include = "ID,UserName,Password,PhoneNum,Email")] User user)
         {
             if (ModelState.IsValid)
@@ -163,7 +164,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Users/Delete/5
-        [Auth(Code ="libraryadmin,admin")]
+        [Auth(Code ="libraryadmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -182,7 +183,7 @@ namespace LibraryProject.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Auth(Code ="libraryadmin,admin")]
+        [Auth(Code ="libraryadmin")]
         public ActionResult DeleteConfirmed(int id)
         {
             //User user = db.Users.Find(id);
