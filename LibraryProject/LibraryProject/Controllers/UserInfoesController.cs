@@ -52,7 +52,7 @@ namespace LibraryProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult PersonInfo([Bind(Include ="StudentID,Name,Email,Phone,DepartmentName")] UserInfo userInfo)
+        public ActionResult PersonInfo([Bind(Include ="UserName,StudentID,Name,Email,Phone,DepartmentName")] UserInfo userInfo)
         {
             var user = CheckLogin.Instance.GetUser();
             var userDatabase = unitOfWork.UserInfoRepository.Get()
@@ -62,6 +62,7 @@ namespace LibraryProject.Controllers
             if(userDatabase.Count() == 0)
             {
                 userInfoInput = new UserInfo {
+                    UserID=user.ID,
                     UserName = userInfo.UserName,
                     StudentID = userInfo.StudentID,
                     Name = userInfo.Name,
@@ -70,9 +71,11 @@ namespace LibraryProject.Controllers
                     DepartmentName = userInfo.DepartmentName
                 };
                 unitOfWork.UserInfoRepository.Insert(userInfoInput);
+                unitOfWork.Save();
             }
             else
             {
+                userDatabase[0].UserID = user.ID;
                 userDatabase[0].UserName = userInfo.UserName;
                 userDatabase[0].StudentID = userInfo.StudentID;
                 userDatabase[0].Name = userInfo.Name;
@@ -80,6 +83,7 @@ namespace LibraryProject.Controllers
                 userDatabase[0].Phone = userInfo.Phone;
                 userDatabase[0].DepartmentName = userInfo.DepartmentName;
                 userInfoInput = userDatabase[0];
+                unitOfWork.Save();
             }
             return View(userInfoInput);
         }
