@@ -21,10 +21,12 @@ namespace LibraryProject.DAL
         public DbSet<Book> Books { get; set; }
         public DbSet<BorrowAndReturn> BorrowAndReturns { get; set; }
         public DbSet<BookType> BookTypes { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
     }
 }
