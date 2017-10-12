@@ -13,24 +13,29 @@ namespace LibraryProject.Controllers
 {
     public class ArticlesController : Controller
     {
-        private LibraryContext db = new LibraryContext();
+        UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Articles
-        [Auth(Code = "libraryadmin")]
         public ActionResult Index()
         {
-            return View(db.Articles.ToList());
+            return View(unitOfWork.ArticleRepository.Get());
+        }
+
+        // GET: LatestNews
+        public ActionResult LatestNews()
+        {
+            var articles = unitOfWork.ArticleRepository.Get();
+            return View(articles);
         }
 
         // GET: Articles/Details/5
-        [Auth(Code = "libraryadmin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Articles.Find(id);
+            Article article = unitOfWork.ArticleRepository.GetByID(id);
             if (article == null)
             {
                 return HttpNotFound();
@@ -39,7 +44,6 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Articles/Create
-        [Auth(Code = "libraryadmin")]
         public ActionResult Create()
         {
             return View();
@@ -51,13 +55,13 @@ namespace LibraryProject.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        [Auth(Code = "libraryadmin")]
-        public ActionResult Create([Bind(Include = "ID,ArticleID,BookTypeID,Title,AuthorName,CreateTime")] Article article)
+        public ActionResult Create([Bind(Include = "ID,AuthorName,Title,Content")] Article article)
         {
             if (ModelState.IsValid)
             {
-                db.Articles.Add(article);
-                db.SaveChanges();
+                article.CreateTime = DateTime.Now;
+                unitOfWork.ArticleRepository.Insert(article);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
 
@@ -65,14 +69,14 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Articles/Edit/5
-        [Auth(Code = "libraryadmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Articles.Find(id);
+            //Article article = db.Articles.Find(id);
+            Article article = unitOfWork.ArticleRepository.GetByID(id);
             if (article == null)
             {
                 return HttpNotFound();
@@ -85,27 +89,26 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Auth(Code = "libraryadmin")]
         public ActionResult Edit([Bind(Include = "ID,ArticleID,BookTypeID,Title,AuthorName,CreateTime")] Article article)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(article).State = EntityState.Modified;
-                db.SaveChanges();
+                unitOfWork.context.Entry(article).State = EntityState.Modified;
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             return View(article);
         }
 
         // GET: Articles/Delete/5
-        [Auth(Code = "libraryadmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Articles.Find(id);
+            //Article article = db.Articles.Find(id);
+            Article article = unitOfWork.ArticleRepository.GetByID(id);
             if (article == null)
             {
                 return HttpNotFound();
@@ -116,12 +119,12 @@ namespace LibraryProject.Controllers
         // POST: Articles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Auth(Code = "libraryadmin")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Article article = db.Articles.Find(id);
-            db.Articles.Remove(article);
-            db.SaveChanges();
+            //Article article = db.Articles.Find(id);
+            Article article = unitOfWork.ArticleRepository.GetByID(id);
+            unitOfWork.ArticleRepository.Delete(id);
+            unitOfWork.Save();
             return RedirectToAction("Index");
         }
 
@@ -129,7 +132,7 @@ namespace LibraryProject.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                unitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }
