@@ -27,6 +27,5 @@ namespace LibraryProject.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-
     }
 }

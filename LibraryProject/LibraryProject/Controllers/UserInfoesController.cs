@@ -96,5 +96,28 @@ namespace LibraryProject.Controllers
             }
             return View(userInfoInput);
         }
+
+        // GET: /UserInfoes/BorrowHistory
+        public ActionResult BorrowHistory()
+        {
+            var user = CheckLogin.Instance.GetUser();
+            var borrowBooks = unitOfWork.BorrowAndReturnRepository.Get()
+                .Where(item => item.UserID == user.ID)
+                .ToList();
+            var outputList = new List<BorrowHistoryOutput>();
+            foreach(var item in borrowBooks)
+            {
+                var book = unitOfWork.BookRepository.GetByID(item.BookID);
+                var cur = new BorrowHistoryOutput
+                {
+                    BookName = book.Name,
+                    BorrowTime = item.BorrowTime,
+                    ReturnTime = item.ReturnTime,
+                    IsReturn = item.IsReturn
+                };
+                outputList.Add(cur);
+            }
+            return View(outputList);
+        }
     }
 }

@@ -4,47 +4,54 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+@using LibraryProject.Models
+
+@{
+    User user = CheckLogin.Instance.GetUser();
+}
+
+@if (user == null || user.Role.Equals("user") == true)
+{
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/Articles/LatestNews">Latest News</a></li>
+            <li class="active">@(new HtmlString(Model.Title))</li>
+        </ol>
+    </section>
+}
+else
+{
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/Articles/Index">Content Manage</a></li>
+            <li class="active">@(new HtmlString(Model.Title))</li>
+        </ol>
+    </section>
+}
 
 <div>
-    <h4>Article</h4>
+    <div class="col-md-12">
+        <h3><strong>@Html.DisplayFor(model => model.Title)</strong></h3>
+        <h3></h3>
+    </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorName)
-        </dt>
-
-        <dd>
+    <h3></h3>
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <strong>@Html.DisplayNameFor(model => model.AuthorName)</strong> :
             @Html.DisplayFor(model => model.AuthorName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model=>model.Content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model=>model.Content)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateTime)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
+            <strong>@Html.DisplayNameFor(model => model.CreateTime)</strong> :
             @Html.DisplayFor(model => model.CreateTime)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <h3></h3>
+        @(new HtmlString(Model.Content))
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
