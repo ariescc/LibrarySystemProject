@@ -28,15 +28,24 @@ namespace LibraryProject.Migrations
             //    );
             //
 
-            context.Users.AddOrUpdate(ctx => ctx.UserName,
-                new User { UserName="admin",Password="12345678",PasswordComfirm="12345678",
-                 Email="0000@qq.com",PhoneNum="1212123123",Role="admin"},
-                new User { UserName="libraryadmin", Password="87654321", PasswordComfirm="87654321",
-                 Email="1111@qq.com",PhoneNum="1231231", Role="libraryadmin"},
-                new User { UserName="student", Password="88888888",PasswordComfirm="88888888",
-                 Email="888@qq.com",PhoneNum="123123",Role="user"}
+            context.Users.AddOrUpdate(p => p.UserName,
+                new User {ID=1, UserName="libraryadmin",Password="11111111",PasswordComfirm="11111111",
+                    Email="11@qq.com",PhoneNum="18829589353",Role="libraryadmin"},
+                new User
+                {
+                    ID=2,
+                    UserName = "student",
+                    Password = "22222222",
+                    PasswordComfirm = "22222222",
+                    Email = "11@qq.com",
+                    PhoneNum = "18829589353",
+                    Role = "user"
+                }
                 );
 
+            context.UserInfoes.AddOrUpdate(p => p.UserName,
+                new UserInfo {UserID=2003,UserName="lilijie",StudentID="2015303309",Name="李立杰",
+                    Email="123@qq.com",Phone="10041",DepartmentName="软件与微电子学院"});
         }
     }
 }
