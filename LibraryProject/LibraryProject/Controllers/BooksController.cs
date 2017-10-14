@@ -139,7 +139,7 @@ namespace LibraryProject.Controllers
             var book = unitOfWork.BookRepository.GetByID(id);
             unitOfWork.BookRepository.Delete(id);
             unitOfWork.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("BooksManage");
         }
 
 

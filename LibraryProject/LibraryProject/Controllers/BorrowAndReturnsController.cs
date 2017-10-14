@@ -29,7 +29,7 @@ namespace LibraryProject.Controllers
                     ID=item.ID,
                     UserName = unitOfWork.UserRepository.GetByID(item.UserID).UserName,
                     BookName = unitOfWork.BookRepository.GetByID(item.BookID).Name,
-                    IsReturn=false,
+                    IsReturn= item.IsReturn,
                     BorrowTime=item.BorrowTime,
                     ReturnTime=item.ReturnTime,
                     ExpiredDays=item.ExpiredDays
@@ -123,8 +123,8 @@ namespace LibraryProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(borrowAndReturn).State = EntityState.Modified;
-                //db.SaveChanges();
+                unitOfWork.context.Entry(borrowAndReturn).State = EntityState.Modified;
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             return View(borrowAndReturn);
