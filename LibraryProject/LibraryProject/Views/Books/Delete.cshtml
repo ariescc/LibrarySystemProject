@@ -4,7 +4,14 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/Books/BooksManage">Book Manage</a></li>
+        <li class="active">Delete</li>
+    </ol>
+</section>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -12,27 +19,43 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsAvailable)
+            @Html.DisplayNameFor(model => model.Publisher)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsAvailable)
+            @Html.DisplayFor(model => model.Publisher)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Isbn)
+            @Html.DisplayNameFor(model => model.Image)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Isbn)
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Isbn10)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Isbn10)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Isbn13)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Isbn13)
         </dd>
 
         <dt>
@@ -44,19 +67,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Author)
+            @Html.DisplayNameFor(model => model.Pages)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
+            @Html.DisplayFor(model => model.Pages)
         </dd>
 
         <dt>
@@ -68,11 +83,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PublishTime)
+            @Html.DisplayNameFor(model => model.msg)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PublishTime)
+            @Html.DisplayFor(model => model.msg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAvaliable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAvaliable)
         </dd>
 
     </dl>

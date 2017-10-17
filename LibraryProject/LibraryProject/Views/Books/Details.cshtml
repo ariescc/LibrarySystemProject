@@ -1,109 +1,105 @@
 ﻿@model LibraryProject.Models.Book
 
-@using LibraryProject.Models
-
 @{
     ViewBag.Title = "Details";
 }
 
-@{ 
-    User user = CheckLogin.Instance.GetUser();
-}
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <ol class="breadcrumb">
         <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/Books/Index">Book List</a></li>
-        <li class="active">Book Detail</li>
+        <li><a href="/Books/BooksManage">Book Manage</a></li>
+        <li class="active">Details</li>
     </ol>
 </section>
 
-<div class="box box-primary">
-    <div class="box-body">
-        <h4>@Html.DisplayFor(model=>model.Name)</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.IsAvailable)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.IsAvailable)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model=>model.BarCode)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Isbn)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model=>model.BarCode)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Isbn)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Summary)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Publisher)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Summary)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Author)
-            </dt>
+        <dd>
+            <img src=@Model.Image width="200" height="200" alt="" />
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Author)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Isbn13)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Type)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Isbn13)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Type)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Summary)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pages)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.PublishTime)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pages)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.PublishTime)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model=>model.Location)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model=>model.Location)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
 
-        </dl>
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAvaliable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAvaliable)
+        </dd>
+
+    </dl>
 </div>
-@if (user == null || user.Role.Equals("libraryadmin") == false)
-{
-    <a href="/Books/Index"><i class="fa fa-reply"></i> Back to List..</a>
-}
-else
-{
-    <a href="/Books/BooksManage"><i class="fa fa-reply"></i> Back to List..</a>
-}
-
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

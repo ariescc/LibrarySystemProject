@@ -1,41 +1,31 @@
-﻿@model IEnumerable<LibraryProject.Models.Article>
+﻿@model IEnumerable<LibraryProject.Models.User>
 
 @{
     ViewBag.Title = "Index";
 }
 
-
-@using LibraryProject.Models
-
-@{
-    User user = (User)CheckLogin.Instance.GetUser();
-}
-
-
-
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <ol class="breadcrumb">
         <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Latest News</li>
+        <li class="active">User Manage</li>
     </ol>
 </section>
 
 <p>
-    <a href="/Articles/Create"><i class="fa fa-edit"></i> Create new article</a>
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table id="table_id_example" class="table table-striped table-hover dt-responsive nowrap table-bordered dataTable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AuthorName)
+                @Html.DisplayNameFor(model=>model.Role)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreateTime)
+                @Html.DisplayNameFor(model => model.Password)
             </th>
             <th></th>
         </tr>
@@ -45,18 +35,17 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AuthorName)
+                    @Html.DisplayFor(modelItem => item.Password)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreateTime)
+                    @Html.DisplayFor(modelItem=>item.Role)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @Html.ActionLink("AddRole","AddRole", new { id = item.ID}) |
+                    @Html.ActionLink("DeleteRole", "DeleteRole", new { id=item.ID})
                 </td>
             </tr>
         }

@@ -28,10 +28,10 @@ namespace LibraryProject.Controllers
                 .Where(ctx => ctx.UserID == user.ID)
                 .ToList()
                 .Count();
-            var userObj = new UserInfoOutput();
+            var userObj = new UserInfo();
             if(userInfo.Count() == 0)
             {
-                userObj = new UserInfoOutput
+                userObj = new UserInfo
                 {
                     UserName = user.UserName,
                     StudentID = "",
@@ -45,7 +45,7 @@ namespace LibraryProject.Controllers
             }
             else
             {
-                userObj = new UserInfoOutput
+                userObj = new UserInfo
                 {
                     UserName = user.UserName,
                     StudentID = userInfo[0].StudentID,
@@ -110,7 +110,7 @@ namespace LibraryProject.Controllers
                 var book = unitOfWork.BookRepository.GetByID(item.BookID);
                 var cur = new BorrowHistoryOutput
                 {
-                    BookName = book.Name,
+                    //BookName = book.Name,
                     BorrowTime = item.BorrowTime,
                     ReturnTime = item.ReturnTime,
                     IsReturn = item.IsReturn

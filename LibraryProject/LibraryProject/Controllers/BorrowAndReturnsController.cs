@@ -28,7 +28,7 @@ namespace LibraryProject.Controllers
                 {
                     ID=item.ID,
                     UserName = unitOfWork.UserRepository.GetByID(item.UserID).UserName,
-                    BookName = unitOfWork.BookRepository.GetByID(item.BookID).Name,
+                    //BookName = unitOfWork.BookRepository.GetByID(item.BookID).Name,
                     IsReturn= item.IsReturn,
                     BorrowTime=item.BorrowTime,
                     ReturnTime=item.ReturnTime,

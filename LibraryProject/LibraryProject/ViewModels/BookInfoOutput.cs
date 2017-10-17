@@ -5,9 +5,9 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 
-namespace LibraryProject.Models
+namespace LibraryProject.ViewModels
 {
-    public class Book
+    public class BookInfoOutput
     {
         public int ID { get; set; }
         // 输入的 ISBN
@@ -18,9 +18,9 @@ namespace LibraryProject.Models
         public string[] Author { get; set; }
         // 出版社
         public string Publisher { get; set; }
-        // 图书封面
+        
         public string Image { get; set; }
-        //ISBN10
+
         public string Isbn10 { get; set; }
         // ISBN13
         public string Isbn13 { get; set; }

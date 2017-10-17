@@ -23,6 +23,44 @@ namespace LibraryProject.Controllers
 
         private UnitOfWork unitOfWork = new UnitOfWork();
 
+        // admin 管理所有的user
+        [Auth(Code = "admin")]
+        public ActionResult AdminIndex()
+        {
+            var userList = unitOfWork.UserRepository.Get()
+                .Where(item => item.Role.Equals("admin") != true)
+                .ToList();
+            return View(userList);
+        }
+
+        // 将某个user设为libraryadmin
+        [Auth(Code = "admin")]
+        public ActionResult AddRole(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = unitOfWork.UserRepository.GetByID(id);
+            user.Role = "libraryadmin";
+            unitOfWork.Save();
+            return RedirectToAction("AdminIndex");
+        }
+
+        // 删除某个user的libraryadmin Role
+        [Auth(Code = "admin")]
+        public ActionResult DeleteRole(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = unitOfWork.UserRepository.GetByID(id);
+            user.Role = "user";
+            unitOfWork.Save();
+            return RedirectToAction("AdminIndex");
+        }
+
         // GET: Login
         public ActionResult Login()
         {
@@ -77,7 +115,10 @@ namespace LibraryProject.Controllers
         public ActionResult Index()
         {
             //return View(db.Users.ToList());
-            return View(unitOfWork.UserRepository.Get());
+            var userList = unitOfWork.UserRepository.Get()
+                .Where(item => item.Role.Equals("user") == true)
+                .ToList();
+            return View(userList);
         }
 
         // GET: Users/Details/5
