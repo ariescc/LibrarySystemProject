@@ -38,17 +38,31 @@
             @Html.DisplayNameFor(model => model.ReturnTime)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ReturnTime)
-        </dd>
+        @if(Model.ReturnTime == new DateTime(0001, 1, 1))
+        {
+            <dd></dd>
+        }
+        else
+        {
+            <dd>
+                @Html.DisplayFor(model => model.ReturnTime)
+            </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.ExpiredDays)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExpiredDays)
-        </dd>
+        @if(Model.ReturnTime == new DateTime(0001, 1, 1))
+        {
+            <dd></dd>
+        }
+        else
+        {
+            <dd>
+                @Html.DisplayFor(model => model.ExpiredDays)
+            </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.IsReturn)

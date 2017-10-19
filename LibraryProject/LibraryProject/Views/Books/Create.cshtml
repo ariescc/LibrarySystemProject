@@ -23,6 +23,10 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
+            <p>Notice: Input ISBN and you can get data about the book! Just Create after inputting ISBN!</p>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model=>model.Isbn, htmlAttributes: new { @class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model=>model.Isbn, new { htmlattributes = new { @class="form-control"}})

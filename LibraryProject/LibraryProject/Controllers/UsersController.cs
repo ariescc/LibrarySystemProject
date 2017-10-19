@@ -62,18 +62,20 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Login
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login([Bind(Include ="UserName,Password")] User user)
         {
             var userObj = unitOfWork.UserRepository.Get()
                 .Where(item => item.UserName.Equals(user.UserName) == true)
                 .ToList();
-            if(userObj[0] != null)
+            if(userObj.Count() != 0)
             {
                 if (userObj[0].Password.Equals(user.Password) == true)
                 {
@@ -94,6 +96,10 @@ namespace LibraryProject.Controllers
 
                     //return RedirectToAction("Index","Books","Index");
                     return Redirect("/Home/Index/");
+                }
+                else
+                {
+                    ModelState.AddModelError("Password", "Your passord is incorrect!");
                 }
             }
             else

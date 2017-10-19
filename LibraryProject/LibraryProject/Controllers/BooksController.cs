@@ -47,6 +47,8 @@ namespace LibraryProject.Controllers
             }
             //Book book = db.Books.Find(id);
             var book = unitOfWork.BookRepository.GetByID(id);
+            book.BarCode = book.ID.ToString();
+            unitOfWork.Save();
             if (book == null)
             {
                 return HttpNotFound();
@@ -70,6 +72,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Books/Create
+        [Auth(Code = "libraryadmin")]
         public ActionResult Create()
         {
             return View();
@@ -80,6 +83,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Auth(Code = "libraryadmin")]
         public ActionResult Create([Bind(Include = "ID,Isbn,Title,Publisher,Image,Isbn10,Isbn13,Summary,Pages,Price,msg,code,Location,IsAvaliable")] Book book)
         {
             if (ModelState.IsValid)
@@ -95,7 +99,8 @@ namespace LibraryProject.Controllers
                 {
                     if (bookInfo.msg != null)
                     {
-                        throw new Exception("获取失败" + bookInfo.msg);
+                        //throw new Exception("获取失败" + bookInfo.msg);
+                        ModelState.AddModelError("Isbn", "No data are gotten from Douban!");
                     }
                     if (bookInfo.Title != null)
                     {
@@ -132,21 +137,24 @@ namespace LibraryProject.Controllers
                     {
                         book.Price = bookInfo.Price;
                     }
+                    string jsonOutput = json;
+                    unitOfWork.BookRepository.Insert(book);
+                    unitOfWork.Save();
+                    return RedirectToAction("BooksManage");
                 }
                 else
                 {
-                    throw new Exception("获取失败");
+                    //throw new Exception("获取失败");
+                    ModelState.AddModelError("Isbn", "No data can be gotten, please Manual input！");
                 }
-                string jsonOutput = json;
-                unitOfWork.BookRepository.Insert(book);
-                unitOfWork.Save();
-                return RedirectToAction("Index");
+                
             }
 
             return View(book);
         }
 
         // GET: Books/Edit/5
+        [Auth(Code = "libraryadmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -167,6 +175,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Auth(Code = "libraryadmin")]
         public ActionResult Edit([Bind(Include = "ID,Title,Publisher,Image,Isbn10,Isbn13,Summary,Pages,Price,msg,code,Location,IsAvaliable")] Book book)
         {
             if (ModelState.IsValid)
@@ -179,6 +188,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Books/Delete/5
+        [Auth(Code = "libraryadmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -197,6 +207,7 @@ namespace LibraryProject.Controllers
         // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Auth(Code = "libraryadmin")]
         public ActionResult DeleteConfirmed(int id)
         {
             //Book book = db.Books.Find(id);

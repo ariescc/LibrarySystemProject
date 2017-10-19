@@ -61,7 +61,7 @@ namespace LibraryProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult PersonInfo([Bind(Include ="UserName,StudentID,Name,Email,Phone,DepartmentName")] UserInfo userInfo)
+        public ActionResult PersonInfo([Bind(Include ="UserName,StudentID,Name,Email,Phone,DepartmentName")] UserInfo userInfo, HttpPostedFileBase image)
         {
             var user = CheckLogin.Instance.GetUser();
             var userDatabase = unitOfWork.UserInfoRepository.Get()
@@ -79,6 +79,18 @@ namespace LibraryProject.Controllers
                     Phone = userInfo.Phone,
                     DepartmentName = userInfo.DepartmentName
                 };
+
+                if(image != null)
+                {
+                    userInfo.ImageType = image.ContentType;
+                    // 新建一个长度等于图片大小的二进制地址
+                    userInfo.ImageData = new byte[image.ContentLength];
+                    // 将image读取到ImageData中
+                    image.InputStream.Read(userInfo.ImageData, 0, image.ContentLength);
+                }
+
+                TempData["message"] = string.Format("{0} has been saved", userInfo.Name);
+
                 unitOfWork.UserInfoRepository.Insert(userInfoInput);
                 unitOfWork.Save();
             }
@@ -92,10 +104,41 @@ namespace LibraryProject.Controllers
                 userDatabase[0].Phone = userInfo.Phone;
                 userDatabase[0].DepartmentName = userInfo.DepartmentName;
                 userInfoInput = userDatabase[0];
+
+                if (image != null)
+                {
+                    userInfo.ImageType = image.ContentType;
+                    // 新建一个长度等于图片大小的二进制地址
+                    userInfo.ImageData = new byte[image.ContentLength];
+                    // 将image读取到ImageData中
+                    image.InputStream.Read(userInfo.ImageData, 0, image.ContentLength);
+                }
+
+                TempData["message"] = string.Format("{0} has been saved", userInfo.Name);
                 unitOfWork.Save();
+
+                
             }
-            return View(userInfoInput);
+            return RedirectToAction("Index", "Home");
         }
+
+        // 通过ID， 将二进制文件转换为图片
+        public FileContentResult GetImage(int userId)
+        {
+            var userinfo = unitOfWork.UserInfoRepository.Get()
+                .Where(item => item.UserID == userId)
+                .ToList();
+
+            if (userinfo[0] != null)
+            {
+                return File(userinfo[0].ImageData, userinfo[0].ImageType);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         // GET: /UserInfoes/BorrowHistory
         public ActionResult BorrowHistory()

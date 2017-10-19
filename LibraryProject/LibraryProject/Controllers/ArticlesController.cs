@@ -16,12 +16,14 @@ namespace LibraryProject.Controllers
         UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: Articles
+        [Auth(Code = "libraryadmin")]
         public ActionResult Index()
         {
             return View(unitOfWork.ArticleRepository.Get());
         }
 
         // GET: LatestNews
+        [AllowAnonymous]
         public ActionResult LatestNews()
         {
             var articles = unitOfWork.ArticleRepository.Get();
@@ -29,6 +31,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Articles/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,6 +47,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Articles/Create
+        [Auth(Code = "libraryadmin")]
         public ActionResult Create()
         {
             return View();
@@ -55,6 +59,7 @@ namespace LibraryProject.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
+        [Auth(Code = "libraryadmin")]
         public ActionResult Create([Bind(Include = "ID,AuthorName,Title,Content")] Article article)
         {
             if (ModelState.IsValid)
@@ -69,6 +74,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Articles/Edit/5
+        [Auth(Code = "libraryadmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,6 +95,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Auth(Code = "libraryadmin")]
         public ActionResult Edit([Bind(Include = "ID,ArticleID,BookTypeID,Title,AuthorName,CreateTime")] Article article)
         {
             if (ModelState.IsValid)
@@ -101,6 +108,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Articles/Delete/5
+        [Auth(Code = "libraryadmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,6 +127,7 @@ namespace LibraryProject.Controllers
         // POST: Articles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Auth(Code = "libraryadmin")]
         public ActionResult DeleteConfirmed(int id)
         {
             //Article article = db.Articles.Find(id);
