@@ -21,5 +21,8 @@ namespace LibraryProject.ViewModels
 
         [Display(Name = "Is Return ?")]
         public bool IsReturn { get; set; }
+
+        [Display(Name = "Expired Days")]
+        public int ExpiredDays { get; set; }
     }
 }

@@ -51,6 +51,7 @@
         User user = (User)CheckLogin.Instance.GetUser();
     }
 
+    <script src="~/Scripts/jquery-form.js" type="text/javascript"></script>
     
 </head>
 <body class="skin-blue">
@@ -183,6 +184,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="/UploadImages/Index">
+                                    <i class="fa fa-picture-o"></i> <span>Photo</span> 
+                                </a>
+                            </li>
+                            <li>
                                 <a href="/Articles/LatestNews">
                                     <i class="fa fa-edit"></i> <span>Latest News</span>
                                 </a>
@@ -190,6 +196,16 @@
                             <li>
                                 <a href="/Books/Index">
                                     <i class="fa fa-table"></i> <span>Book List</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/UserInfoes/BorrowHistory">
+                                    <i class="fa fa-table"></i> <span>Borrow History</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/UserInfoes/CurrentBorrow">
+                                    <i class="fa fa-table"></i> <span>Current Borrow</span>
                                 </a>
                             </li>
                         }
@@ -201,8 +217,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/Articles/LatestNews">
-                                    <i class="fa fa-edit"></i> <span>Latest News</span>
+                                <a href="/UploadImages/Index">
+                                    <i class="fa fa-picture-o"></i> <span>photo</span>
                                 </a>
                             </li>
                             <li>
@@ -221,13 +237,23 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/Users/Index">
-                                    <i class="fa fa-group"></i> <span>User Manage</span>
+                                <a href="/UserInfoes/BorrowHistory">
+                                    <i class="fa fa-table"></i> <span>Borrow History</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/UserInfoes/CurrentBorrow">
+                                    <i class="fa fa-table"></i> <span>Current Borrow</span>
                                 </a>
                             </li>
                         }
                         else
                         {
+                            <li>
+                                <a href="/UploadImages/Index">
+                                    <i class="fa fa-picture-o"></i> <span>Photo</span>
+                                </a>
+                            </li>
                             <li>
                                 <a href="/Users/AdminIndex">
                                     <i class="fa fa-group"></i> <span>Libraryadmin Manage</span>

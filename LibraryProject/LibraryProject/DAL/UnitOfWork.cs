@@ -18,6 +18,7 @@ namespace LibraryProject.DAL
         private GenericRepository<BorrowAndReturn> borrowAndReturnRepository;
         private GenericRepository<BookType> bookTypeRepository;
         private GenericRepository<Article> articleRepository;
+        private GenericRepository<UploadImage> uploadImageRepository;
 
         public GenericRepository<User> UserRepository
         {
@@ -100,6 +101,18 @@ namespace LibraryProject.DAL
                     this.articleRepository = new GenericRepository<Article>(context);
                 }
                 return articleRepository;
+            }
+        }
+
+        public GenericRepository<UploadImage> UploadImageRepository
+        {
+            get
+            {
+                if (this.uploadImageRepository == null)
+                {
+                    this.uploadImageRepository = new GenericRepository<UploadImage>(context);
+                }
+                return uploadImageRepository;
             }
         }
 

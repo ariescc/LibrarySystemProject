@@ -22,6 +22,7 @@ namespace LibraryProject.DAL
         public DbSet<BorrowAndReturn> BorrowAndReturns { get; set; }
         public DbSet<BookType> BookTypes { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<UploadImage> UploadImages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

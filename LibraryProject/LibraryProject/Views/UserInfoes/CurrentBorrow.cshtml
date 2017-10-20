@@ -1,14 +1,15 @@
-﻿@model IEnumerable<LibraryProject.Models.Book>
+﻿@model IEnumerable<LibraryProject.ViewModels.BorrowHistoryOutput>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "BorrowHistory";
 }
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <ol class="breadcrumb">
         <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Book List</li>
+        <li><a href="/UserInfoes/PersonInfo">Profile</a></li>
+        <li class="active">Current Borrow</li>
     </ol>
 </section>
 
@@ -16,12 +17,14 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.BookName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Isbn13)
+                @Html.DisplayNameFor(model => model.BorrowTime)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model=>model.ExpiredDays)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -29,14 +32,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.DisplayFor(modelItem => item.BookName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Isbn13)
+                    @Html.DisplayFor(modelItem => item.BorrowTime)
                 </td>
                 <td>
-                    @Html.ActionLink("Copies", "SearchResult", new { isbn = item.Isbn13 }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID })
+                    @Html.DisplayFor(modelItem=>item.ExpiredDays)
                 </td>
             </tr>
         }

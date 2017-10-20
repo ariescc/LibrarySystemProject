@@ -24,8 +24,28 @@ namespace LibraryProject.Controllers
             var userInfo = unitOfWork.UserInfoRepository.Get()
                 .Where(ctx => ctx.UserID == user.ID)
                 .ToList();
+
+            var ImageList = unitOfWork.UploadImageRepository.Get()
+                .Where(item => item.UserID == user.ID)
+                .ToList();
+
+            string ImageInput;
+            if(ImageList.Count() == 0)
+            {
+                ImageInput = null;
+            }
+            else
+            {
+                ImageInput = "UploadFiles/temp/" + ImageList.LastOrDefault().HeadFileName;
+            }
+
             var borrowAmount = unitOfWork.BorrowAndReturnRepository.Get()
-                .Where(ctx => ctx.UserID == user.ID)
+                .Where(ctx => ctx.UserID == user.ID && ctx.IsReturn == true)
+                .ToList()
+                .Count();
+
+            var currentAmount = unitOfWork.BorrowAndReturnRepository.Get()
+                .Where(ctx => ctx.UserID == user.ID && ctx.IsReturn == false)
                 .ToList()
                 .Count();
             var userObj = new UserInfo();
@@ -35,12 +55,13 @@ namespace LibraryProject.Controllers
                 {
                     UserName = user.UserName,
                     StudentID = "",
-                    Email = user.Email,
-                    Phone = user.PhoneNum,
+                    Email = "",
+                    Phone = "",
                     DepartmentName = "",
                     Name = "",
                     BorrowAmount = borrowAmount,
-                    CurrentBorrowAmount = 0
+                    CurrentBorrowAmount = currentAmount,
+                    Image = ImageInput
                 };
             }
             else
@@ -49,47 +70,52 @@ namespace LibraryProject.Controllers
                 {
                     UserName = user.UserName,
                     StudentID = userInfo[0].StudentID,
-                    Email = user.Email,
-                    Phone = user.PhoneNum,
+                    Email = userInfo[0].Email,
+                    Phone = userInfo[0].Phone,
                     DepartmentName = userInfo[0].DepartmentName,
                     Name = userInfo[0].Name,
                     BorrowAmount = borrowAmount,
-                    CurrentBorrowAmount = 0
+                    CurrentBorrowAmount = currentAmount,
+                    Image = ImageInput
                 };
             }
             return View(userObj);
         }
 
         [HttpPost]
-        public ActionResult PersonInfo([Bind(Include ="UserName,StudentID,Name,Email,Phone,DepartmentName")] UserInfo userInfo, HttpPostedFileBase image)
+        public ActionResult PersonInfo([Bind(Include ="UserName,StudentID,Name,Email,Phone,DepartmentName")] UserInfo userInfo)
         {
             var user = CheckLogin.Instance.GetUser();
             var userDatabase = unitOfWork.UserInfoRepository.Get()
                 .Where(ctx => ctx.UserName.Equals(userInfo.UserName) == true)
                 .ToList();
             var userInfoInput = new UserInfo();
+            var imageAddress = unitOfWork.UploadImageRepository.Get()
+                .Where(item => item.UserID == user.ID)
+                .ToList();
+
+            string ImageInput;
+            if(imageAddress.Count() == 0)
+            {
+                ImageInput = null;
+            }
+            else
+            {
+                ImageInput = "~/UploadFiles/temp/" + imageAddress.LastOrDefault().HeadFileName;
+            }
+
             if(userDatabase.Count() == 0)
             {
                 userInfoInput = new UserInfo {
-                    UserID=user.ID,
+                    UserID = user.ID,
                     UserName = userInfo.UserName,
                     StudentID = userInfo.StudentID,
                     Name = userInfo.Name,
                     Email = userInfo.Email,
                     Phone = userInfo.Phone,
-                    DepartmentName = userInfo.DepartmentName
+                    DepartmentName = userInfo.DepartmentName,
+                    Image = ImageInput
                 };
-
-                if(image != null)
-                {
-                    userInfo.ImageType = image.ContentType;
-                    // 新建一个长度等于图片大小的二进制地址
-                    userInfo.ImageData = new byte[image.ContentLength];
-                    // 将image读取到ImageData中
-                    image.InputStream.Read(userInfo.ImageData, 0, image.ContentLength);
-                }
-
-                TempData["message"] = string.Format("{0} has been saved", userInfo.Name);
 
                 unitOfWork.UserInfoRepository.Insert(userInfoInput);
                 unitOfWork.Save();
@@ -103,18 +129,9 @@ namespace LibraryProject.Controllers
                 userDatabase[0].Email = userInfo.Email;
                 userDatabase[0].Phone = userInfo.Phone;
                 userDatabase[0].DepartmentName = userInfo.DepartmentName;
+                userDatabase[0].Image = ImageInput;
                 userInfoInput = userDatabase[0];
 
-                if (image != null)
-                {
-                    userInfo.ImageType = image.ContentType;
-                    // 新建一个长度等于图片大小的二进制地址
-                    userInfo.ImageData = new byte[image.ContentLength];
-                    // 将image读取到ImageData中
-                    image.InputStream.Read(userInfo.ImageData, 0, image.ContentLength);
-                }
-
-                TempData["message"] = string.Format("{0} has been saved", userInfo.Name);
                 unitOfWork.Save();
 
                 
@@ -122,30 +139,12 @@ namespace LibraryProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // 通过ID， 将二进制文件转换为图片
-        public FileContentResult GetImage(int userId)
-        {
-            var userinfo = unitOfWork.UserInfoRepository.Get()
-                .Where(item => item.UserID == userId)
-                .ToList();
-
-            if (userinfo[0] != null)
-            {
-                return File(userinfo[0].ImageData, userinfo[0].ImageType);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-
         // GET: /UserInfoes/BorrowHistory
         public ActionResult BorrowHistory()
         {
             var user = CheckLogin.Instance.GetUser();
             var borrowBooks = unitOfWork.BorrowAndReturnRepository.Get()
-                .Where(item => item.UserID == user.ID)
+                .Where(item => item.UserID == user.ID && item.IsReturn == true)
                 .ToList();
             var outputList = new List<BorrowHistoryOutput>();
             foreach(var item in borrowBooks)
@@ -153,10 +152,41 @@ namespace LibraryProject.Controllers
                 var book = unitOfWork.BookRepository.GetByID(item.BookID);
                 var cur = new BorrowHistoryOutput
                 {
-                    //BookName = book.Name,
+                    BookName = book.Title,
                     BorrowTime = item.BorrowTime,
                     ReturnTime = item.ReturnTime,
                     IsReturn = item.IsReturn
+                };
+                outputList.Add(cur);
+            }
+            return View(outputList);
+        }
+
+        // GET: /UserInfoes/CurrentBorrow
+        public ActionResult CurrentBorrow()
+        {
+            var user = CheckLogin.Instance.GetUser();
+            var borrowBooks = unitOfWork.BorrowAndReturnRepository.Get()
+                .Where(item => item.UserID == user.ID && item.IsReturn == false)
+                .ToList();
+
+            var outputList = new List<BorrowHistoryOutput>();
+            foreach(var item in borrowBooks)
+            {
+                var book = unitOfWork.BookRepository.GetByID(item.BookID);
+                var tmp = DateTime.Now - item.BorrowTime;
+                var days = tmp.Days;
+                if (days <= 30)
+                {
+                    days = 0;
+                }
+                var cur = new BorrowHistoryOutput()
+                {
+                    BookName = book.Title,
+                    BorrowTime = item.BorrowTime,
+                    ReturnTime = item.ReturnTime,
+                    IsReturn = item.IsReturn,
+                    ExpiredDays = days
                 };
                 outputList.Add(cur);
             }

@@ -96,18 +96,25 @@ namespace LibraryProject.Controllers
                 }
                 else
                 {
-                    book[0].IsAvaliable = true;
-
-                    borrowAndReturn = new BorrowAndReturn
+                    if(book[0].IsAvaliable == true)
                     {
-                        BookID = borrowAndReturnInput.BookID,
-                        UserID = userInfoObj[0].UserID,
-                        BorrowTime = DateTime.Now,
-                        IsReturn = false
-                    };
-                    unitOfWork.BorrowAndReturnRepository.Insert(borrowAndReturn);
-                    unitOfWork.Save();
-                    return RedirectToAction("Index");
+                        ModelState.AddModelError("BookID", "The book has been borrowed!");
+                    }
+                    else
+                    {
+                        book[0].IsAvaliable = true;
+
+                        borrowAndReturn = new BorrowAndReturn
+                        {
+                            BookID = borrowAndReturnInput.BookID,
+                            UserID = userInfoObj[0].UserID,
+                            BorrowTime = DateTime.Now,
+                            IsReturn = false
+                        };
+                        unitOfWork.BorrowAndReturnRepository.Insert(borrowAndReturn);
+                        unitOfWork.Save();
+                        return RedirectToAction("Index");
+                    }
                 }
             }
             return View(borrowAndReturnInput);
@@ -134,7 +141,8 @@ namespace LibraryProject.Controllers
 
             if(bookObj.Count() == 0)
             {
-                throw new Exception("请核查图书库内是否有该本图书");
+                //throw new Exception("请核查图书库内是否有该本图书");
+                ModelState.AddModelError("BookID", "Please check whether exists the book in the library!");
             }
 
             var borrow = unitOfWork.BorrowAndReturnRepository.Get()
@@ -143,7 +151,8 @@ namespace LibraryProject.Controllers
 
             if(borrow == null)
             {
-                throw new Exception("请核查该本图书是否已经借阅");
+                //throw new Exception("请核查该本图书是否已经借阅");
+                ModelState.AddModelError("BookID", "Please check whether this book is borrowed!");
             }
 
             var tmp = DateTime.Now - borrow[0].BorrowTime;

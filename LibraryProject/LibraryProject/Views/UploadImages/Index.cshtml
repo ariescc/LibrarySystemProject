@@ -1,0 +1,97 @@
+﻿@model LibraryProject.Models.UploadImage
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link href="@Url.Content("~/Scripts/imgareaselect/img/imgareaselect-animated.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/User.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/popup.css")" rel="stylesheet" />
+
+<div class="upbox clearfix">
+    <div class="upPhoto">
+        <div class="upcon" id="user_head_upload_box">
+            <p class="phototxt">Choose photo to upload</p>
+            <div class="upfile">
+                @using (Html.BeginForm("uploadHead", "UploadImages", FormMethod.Post, new { ID = "user_head_form", enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="head" class="filebtn" onchange="$('#user_head_upload_box').hide();$('#user_head_show_box').show();$('#user_head_form').submit();" />
+                    <input type="button" class="upimgbtn" value="Upload" />
+                }
+            </div>
+        </div>
+        <div id="user_head_show_box" style="width: 300px; height: 300px; line-height: 300px; text-align: center; background: gray no-repeat; margin-bottom: 40px; display: none">
+            <img id="user_head_origin" style="vertical-align: middle;" src="/Content/img/load.gif">
+        </div>
+        <div class="sysbtn">
+            @using (Html.BeginForm("saveHead", "UploadImages", FormMethod.Post, new { ID = "user_head_param_form", enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.HeadFileName, new { id = "head_name" })
+                @Html.HiddenFor(model => model.X, new { id = "head_x" })
+                @Html.HiddenFor(model => model.Y, new { id = "head_y" })
+                @Html.HiddenFor(model => model.Width, new { id = "head_width" })
+                @Html.HiddenFor(model => model.Height, new { id = "head_height" })
+                <input type="submit" class="btnyes" value="Save">
+                <input type="button" class="btnno" value="Cancel" onclick="cancelHead();">
+            }
+
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.form.js")"></script>
+<script src="@Url.Content("~/Scripts/imgareaselect/jquery.imgareaselect.pack.js")"></script>
+<script src="@Url.Content("~/Scripts/head.js")"></script>
+<script src="@Url.Content("~/Scripts/popup.js")"></script>
+
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#user_head_form").ajaxForm({
+                success: function (data) {
+                    $('#user_head_upload_box').show();
+                    $('#user_head_show_box').hide();
+                    if (data != undefined && data != null) {
+                        if (data.msg == 0) {
+                            showreward("<span class=\"g_error\">Please upload photo！</span>");
+                        } else if (data.msg == -1) {
+                            showreward("<span class=\"g_error\">File format is incorrect！</span>");
+                        } else if (data.msg == -2) {
+                            showreward("<span class=\"g_error\">The size of photo can't bigger than 10M！</span>");
+                        } else if (data.msg == -3) {
+                            showreward("<span class=\"g_error\">Error, try once more！！</span>");
+                        } else {
+                            var path = "/UploadFiles/temp/" + data.msg;
+                            $("#head_name").val(data.msg);
+                            UserHeadUtil.initialize(path);
+
+                        }
+                    }
+                }
+            });
+            $("#user_head_param_form").ajaxForm({
+                success: function (data) {
+                    if (data.msg == 0) {
+                        showreward("<span class=\"g_error\">Error of Internet！</span>");
+                    } else if (data.msg == -1) {
+                        showreward("<span class=\"g_error\">Error of Internet！</span>");
+                    } else {
+                        showreward("<span class=\"g_ok\">Upload successfully！</span>");
+                        $("img#origin_user_head_75").attr("src", "/UploadFiles/75/" + data);
+                        $("img#top_user_head_25").attr("src", "/UploadFiles/25/" + data);
+                        $('img#user_head_origin').imgAreaSelect({ remove: true });
+                        $("#user_head_show_box").hide();
+                        $("#user_head_upload_box").show();
+                        $("#user_head_origin").attr({
+                            "src": "/Content/img/upload.png",
+                            "width": "100%",
+                            "height": "100%"
+                        });
+                    }
+                }
+            });
+        });
+
+</script>

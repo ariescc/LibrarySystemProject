@@ -4,10 +4,16 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+ <!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/BorrowAndReturns/Index">Borrow Manage</a></li>
+        <li class="active">Details</li>
+    </ol>
+</section>
 
 <div>
-    <h4>BorrowAndReturn</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -74,7 +80,3 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

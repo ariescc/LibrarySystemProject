@@ -40,5 +40,7 @@ namespace LibraryProject.Models
         // 图书状态
         [Display(Name = "Avaliable?")]
         public bool IsAvaliable { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

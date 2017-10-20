@@ -1,0 +1,142 @@
+﻿@model LibraryProject.Models.UploadImage
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link href="@Url.Content("~/Scripts/imgareaselect/img/imgareaselect-animated.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/User.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/popup.css")" rel="stylesheet" />
+
+<h2>Create</h2>
+
+
+<dl class="mydl">
+    <dt>曾祥展</dt>
+    <dd class="myphoto"><img id="origin_user_head_75" src="/avatar/75/201303040036319181.jpg" width="75" height="75" alt="曾祥展"></dd>
+</dl>
+
+<div class="upbox clearfix">
+    <div class="upPhoto">
+        <div class="upcon" id="user_head_upload_box">
+            <p class="phototxt">选择你要上传的头像</p>
+            <div class="upfile">
+                @using (Html.BeginForm("uploadHead", "ucenter", FormMethod.Post, new { ID = "user_head_form", enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="head" class="filebtn" onchange="$('#user_head_upload_box').hide();$('#user_head_show_box').show();$('#user_head_form').submit();" />
+                    <input type="button" class="upimgbtn" value="上传头像" />
+                }
+            </div>
+        </div>
+        <div id="user_head_show_box" style="width: 300px; height: 300px; line-height: 300px; text-align: center; background: gray no-repeat; margin-bottom: 40px; display: none">
+            <img id="user_head_origin" style="vertical-align: middle;" src="/Content/img/load.gif">
+        </div>
+        <div class="sysbtn">
+            @using (Html.BeginForm("saveHead", "ucenter", FormMethod.Post, new { ID = "user_head_param_form", enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.HeadFileName, new { id = "head_name" })
+                @Html.HiddenFor(model => model.X, new { id = "head_x" })
+                @Html.HiddenFor(model => model.Y, new { id = "head_y" })
+                @Html.HiddenFor(model => model.Width, new { id = "head_width" })
+                @Html.HiddenFor(model => model.Height, new { id = "head_height" })
+                <input type="submit" class="btnyes" value="保存">
+                <input type="button" class="btnno" value="取消" onclick="cancelHead();">
+            }
+
+        </div>
+    </div>
+    <div class="upPhotolist clearfix">
+        <div class="upimg upbig">
+            <div class="upimgbox up_1">
+                <img src="/avatar/180/201303040036319181.jpg" style="width: 180px; height: 180px" id="user_head_180">
+            </div>
+            <p>大尺寸头像180×180像素</p>
+        </div>
+        <div class="upimg upsmall">
+            <div class="upsm">
+                <div class="upimgbox up_2">
+                    <img src="/avatar/75/201303040036319181.jpg" style="width: 75px; height: 75px" id="user_head_75">
+                </div>
+                <p>
+                    中尺寸头像<br>
+                    75×75像素
+                </p>
+            </div>
+            <div class="upsm">
+                <div class="upimgbox up_3">
+                    <img src="/avatar/50/201303040036319181.jpg" style="width: 50px; height: 50px" id="user_head_50">
+                </div>
+                <p>
+                    中尺寸头像<br>
+                    50×50像素
+                </p>
+            </div>
+            <div class="upsm">
+                <div class="upimgbox up_4">
+                    <img src="/avatar/25/201303040036319181.jpg" style="width: 25px; height: 25px" id="user_head_25">
+                </div>
+                <p>
+                    小尺寸头像<br>
+                    25×25像素
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.form.js")"></script>
+<script src="@Url.Content("~/Scripts/imgareaselect/jquery.imgareaselect.pack.js")"></script>
+<script src="@Url.Content("~/Scripts/head.js")"></script>
+<script src="@Url.Content("~/Scripts/popup.js")"></script>
+
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#user_head_form").ajaxForm({
+                success: function (data) {
+                    $('#user_head_upload_box').show();
+                    $('#user_head_show_box').hide();
+                    if (data != undefined && data != null) {
+                        if (data.msg == 0) {
+                            showreward("<span class=\"g_error\">请上传图片！</span>");
+                        } else if (data.msg == -1) {
+                            showreward("<span class=\"g_error\">文件格式不对！</span>");
+                        } else if (data.msg == -2) {
+                            showreward("<span class=\"g_error\">上传图片不能超过10M！</span>");
+                        } else if (data.msg == -3) {
+                            showreward("<span class=\"g_error\">出现异常，请稍后再试！！</span>");
+                        } else {
+                            var path = "/avatar/temp/" + data.msg;
+                            $("#head_name").val(data.msg);
+                            UserHeadUtil.initialize(path);
+
+                        }
+                    }
+                }
+            });
+            $("#user_head_param_form").ajaxForm({
+                success: function (data) {
+                    if (data.msg == 0) {
+                        showreward("<span class=\"g_error\">网络出现异常，请稍后再试！</span>");
+                    } else if (data.msg == -1) {
+                        showreward("<span class=\"g_error\">系统出现异常，请稍后再试！</span>");
+                    } else {
+                        showreward("<span class=\"g_ok\">修改成功！</span>");
+                        $("img#origin_user_head_75").attr("src", "/avatar/75/" + data);
+                        $("img#top_user_head_25").attr("src", "/avatar/25/" + data);
+                        $('img#user_head_origin').imgAreaSelect({ remove: true });
+                        $("#user_head_show_box").hide();
+                        $("#user_head_upload_box").show();
+                        $("#user_head_origin").attr({
+                            "src": "/Content/img/upload.png",
+                            "width": "100%",
+                            "height": "100%"
+                        });
+                    }
+                }
+            });
+        });
+
+</script>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryProject.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,14 @@ namespace LibraryProject.Controllers
 {
     public class HomeController : Controller
     {
+        UnitOfWork unitOfWork = new UnitOfWork();
+
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return View();
+            var articleList = unitOfWork.ArticleRepository.Get();
+
+            return View(articleList);
         }
 
         [AllowAnonymous]

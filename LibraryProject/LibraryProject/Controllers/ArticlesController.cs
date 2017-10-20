@@ -96,7 +96,7 @@ namespace LibraryProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Auth(Code = "libraryadmin")]
-        public ActionResult Edit([Bind(Include = "ID,ArticleID,BookTypeID,Title,AuthorName,CreateTime")] Article article)
+        public ActionResult Edit([Bind(Include = "ID,ArticleID,BookTypeID,Title,AuthorName,CreateTime,Content")] Article article)
         {
             if (ModelState.IsValid)
             {

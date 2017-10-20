@@ -1,17 +1,38 @@
 ﻿@model LibraryProject.Models.Book
 
+@using LibraryProject.Models
+
 @{
     ViewBag.Title = "Details";
 }
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <ol class="breadcrumb">
-        <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/Books/BooksManage">Book Manage</a></li>
-        <li class="active">Details</li>
-    </ol>
-</section>
+@{
+    User user = (User)CheckLogin.Instance.GetUser();
+}
+
+@if (user == null || user.Role.Equals("user") == true)
+{
+     <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/Books/Index">Book List</a></li>
+            <li class="active">Details</li>
+        </ol>
+    </section>
+}
+else
+{
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/Home/BooksManage"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/Books/Index">Book Manage</a></li>
+            <li class="active">Details</li>
+        </ol>
+    </section>
+}
+
 
 
 <div>
@@ -89,17 +110,5 @@
             @Html.DisplayFor(model => model.Location)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAvaliable)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsAvaliable)
-        </dd>
-
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

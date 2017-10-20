@@ -17,11 +17,9 @@ namespace LibraryProject.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public byte[] ImageData { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public string ImageType { get; set; }
         public string DepartmentName { get; set; }
         public int BorrowAmount { get; set; }
         public int CurrentBorrowAmount { get; set; }
+        public string Image { get; set; }
     }
 }

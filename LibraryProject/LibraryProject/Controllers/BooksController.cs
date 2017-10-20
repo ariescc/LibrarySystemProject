@@ -60,7 +60,7 @@ namespace LibraryProject.Controllers
         public ActionResult SearchResult(string isbn)
         {
             var resList = unitOfWork.BookRepository.Get()
-                .Where(item => item.Isbn13.Equals(isbn) == true)
+                .Where(item => item.Isbn13.Equals(isbn) == true && item.IsDeleted == false)
                 .ToList();
 
             foreach(var item in resList)
@@ -213,8 +213,16 @@ namespace LibraryProject.Controllers
             //Book book = db.Books.Find(id);
             //db.Books.Remove(book);
             //db.SaveChanges();
-            unitOfWork.BookRepository.Delete(id);
-            unitOfWork.Save();
+            var book = unitOfWork.BookRepository.GetByID(id);
+            if(book.IsAvaliable == true)
+            {
+                ModelState.AddModelError("msg", "The book has been borrowed!");
+            }
+            else
+            {
+                book.IsDeleted = true;
+                unitOfWork.Save();
+            }
             return RedirectToAction("BooksManage");
         }
 
@@ -310,7 +318,7 @@ namespace LibraryProject.Controllers
             StringFormat format = new StringFormat { Alignment = StringAlignment.Center };
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             //封面显示内容：暂无封面
-            g.DrawString("暂无封面", new Font("黑体", 12f, FontStyle.Regular), Brushes.Black, 51, 50, format);
+            g.DrawString("No Drawing", new Font("黑体", 12f, FontStyle.Regular), Brushes.Black, 51, 50, format);
             return image;
         }
     }

@@ -117,7 +117,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Users
-        [Auth(Code ="libraryadmin")]
+        [Auth(Code ="admin")]
         public ActionResult Index()
         {
             //return View(db.Users.ToList());
@@ -128,7 +128,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Users/Details/5
-        [Auth(Code ="libraryadmin")]
+        [Auth(Code ="admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -161,7 +161,7 @@ namespace LibraryProject.Controllers
         {
             if(IsDistinctUserName(user.UserName))
             {
-                ModelState.AddModelError("UserName", "用户名称不唯一");
+                ModelState.AddModelError("UserName", "This user has been registered!");
             }
             if (ModelState.IsValid)
             {
@@ -177,7 +177,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Users/Edit/5
-        [Auth(Code ="libraryadmin")]
+        [Auth(Code ="admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -198,7 +198,7 @@ namespace LibraryProject.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Auth(Code ="libraryadmin")]
+        [Auth(Code ="admin")]
         public ActionResult Edit([Bind(Include = "ID,UserName,Password,PhoneNum,Email")] User user)
         {
             if (ModelState.IsValid)
@@ -211,7 +211,7 @@ namespace LibraryProject.Controllers
         }
 
         // GET: Users/Delete/5
-        [Auth(Code ="libraryadmin")]
+        [Auth(Code ="admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -230,7 +230,7 @@ namespace LibraryProject.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Auth(Code ="libraryadmin")]
+        [Auth(Code ="admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             //User user = db.Users.Find(id);
@@ -238,7 +238,7 @@ namespace LibraryProject.Controllers
             //db.SaveChanges();
             unitOfWork.UserRepository.Delete(id);
             unitOfWork.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminIndex");
         }
 
         protected override void Dispose(bool disposing)
@@ -262,7 +262,7 @@ namespace LibraryProject.Controllers
         {
             if (IsDistinctUserName(username))
             {
-                return Json("用户名不唯一", JsonRequestBehavior.AllowGet);
+                return Json("The UserName has existed!", JsonRequestBehavior.AllowGet);
             }
             else
             {
