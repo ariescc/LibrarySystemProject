@@ -29,3 +29,4 @@ You need **asp.net mvc5** development environment.
 	and **mvcdemo** database is created at local.
 5. In the table **BorrowAndReturn**, you should change the **datetime** type to **datetime2(7)** type in the 
 **BorrowTime** field and **ReturnTime** field.
+6. You need to create **180/75/50/25/temp folder** in the **UploadFiles** folder.
