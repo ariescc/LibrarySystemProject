@@ -73,7 +73,7 @@ namespace LibraryProject.Controllers
         public ActionResult Login([Bind(Include ="UserName,Password")] User user)
         {
             var userObj = unitOfWork.UserRepository.Get()
-                .Where(item => item.UserName.Equals(user.UserName) == true)
+                .Where(item => item.UserName.Equals(user.UserName) == true && item.IsDeleted == false)
                 .ToList();
             if(userObj.Count() != 0)
             {
@@ -236,7 +236,9 @@ namespace LibraryProject.Controllers
             //User user = db.Users.Find(id);
             //db.Users.Remove(user);
             //db.SaveChanges();
-            unitOfWork.UserRepository.Delete(id);
+            //unitOfWork.UserRepository.Delete(id);
+            var user = unitOfWork.UserRepository.GetByID(id);
+            user.IsDeleted = true;
             unitOfWork.Save();
             return RedirectToAction("AdminIndex");
         }

@@ -146,6 +146,13 @@ namespace LibraryProject.Controllers
                 {
                     //throw new Exception("获取失败");
                     ModelState.AddModelError("Isbn", "No data can be gotten, please Manual input！");
+                    if(book.Title != null)
+                    {
+                        book.Isbn13 = book.Isbn;
+                        unitOfWork.BookRepository.Insert(book);
+                        unitOfWork.Save();
+                        return RedirectToAction("BooksManage");
+                    }
                 }
                 
             }

@@ -10,14 +10,29 @@
         User user = (User)CheckLogin.Instance.GetUser();
 }
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <ol class="breadcrumb">
-        <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/Books/BooksManage"> Book Manage</a></li>
-        <li class="active">Search Result</li>
-    </ol>
-</section>
+@if (user == null || user.Role.Equals("user") == true)
+{
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/Books/Index"> Book List</a></li>
+            <li class="active">Search Result</li>
+        </ol>
+    </section>
+}
+else
+{
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/Books/BooksManage"> Book Manage</a></li>
+            <li class="active">Search Result</li>
+        </ol>
+    </section>
+}
+
 
 <table id="table_id_example" class="table table-striped table-hover dt-responsive nowrap table-bordered dataTable">
     <thead>

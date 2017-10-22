@@ -38,7 +38,7 @@ namespace LibraryProject.Models
         // 图书位置
         public string Location { get; set; }
         // 图书状态
-        [Display(Name = "Avaliable?")]
+        [Display(Name = "UnAvaliable?")]
         public bool IsAvaliable { get; set; }
 
         public bool IsDeleted { get; set; }
