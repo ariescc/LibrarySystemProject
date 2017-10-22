@@ -1,3 +1,10 @@
 # Visual Studio 2015 cache/options directory
 .vs/
-
+.LibraryProject/App_Data
+.LibraryProject/App_Start
+.LibraryProject/bin
+.LibraryProject/obj
+.LibraryProject/UploadFiles
+.packages/
+.LibraryProject.测试/bin
+.LibraryProject.测试/obj
